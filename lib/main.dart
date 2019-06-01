@@ -12,25 +12,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return BlocProviderList(
-                listBloc: [
-                  Bloc(BlocMain()),
-                ],
-                child: MaterialApp(
-            title: 'hacka19 flutter',
-            theme: new ThemeData(
-              primarySwatch: Colors.blue,
-            
-            ),
-            home: FeedPage(),
-              routes: {
-        "/feed": (_) => FeedPage(),
-        "/onboard": (_) => OnboardingPage(),
-        "/perfil": (_) => PerfilPage(),
-        "/rootPage": (_) => RootPage(),
-      },
-          ),
-            );
+      listBloc: [
+        Bloc(BlocMain()),
+      ],
+      child: MaterialApp(
+        title: 'hacka19 flutter',
+        theme: new ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: OnboardingPage(),
+        routes: {
+          "/feed": (_) => FeedPage(),
+          "/onboard": (_) => OnboardingPage(),
+          "/perfil": (_) => PerfilPage(),
+          "/rootPage": (_) => RootPage(),
+        },
+      ),
+    );
   }
 }
