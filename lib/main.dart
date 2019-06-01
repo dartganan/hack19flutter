@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         theme: new ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: FeedPage(),
+        home: OnboardingPage(),
         routes: {
           "/feed": (_) => FeedPage(),
           "/onboard": (_) => OnboardingPage(),
