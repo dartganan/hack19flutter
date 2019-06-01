@@ -8,7 +8,7 @@ class AskModel {
   AskModel(
       {this.ask, this.createdAt, this.userId, this.userName, this.userPhoto});
 
-  AskModel.fromJson(Map<String, dynamic> json) {
+  fromJson(Map<String, dynamic> json) {
     ask = json['ask'];
     createdAt = json['created_at'];
     userId = json['userId'];
