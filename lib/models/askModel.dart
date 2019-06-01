@@ -1,6 +1,6 @@
 class AskModel {
   String ask;
-  String createdAt;
+  DateTime createdAt = DateTime.now();
   String userId;
   String userName;
   String userPhoto;

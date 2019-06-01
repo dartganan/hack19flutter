@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:hack19flutter/blocs/mainBloc.dart';
 import 'package:hack19flutter/models/askModel.dart';
+import 'package:hack19flutter/pages/feedNewPage.dart';
+import 'package:hack19flutter/pages/feedViewPage.dart';
 
 class FeedPage extends StatefulWidget {
   @override
@@ -39,7 +41,9 @@ class _FeedPageState extends State<FeedPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => FeedNewPage()));
+        },
       ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -100,11 +104,12 @@ class _FeedPageState extends State<FeedPage> {
                                 AsyncSnapshot<QuerySnapshot> snapshot) {
                               if (!snapshot.hasData)
                                 return CircularProgressIndicator();
+                                List teste = snapshot.data.documents.reversed.toList();
                             return  ListView.builder(
-                                itemCount: snapshot.data.documents.length,
+                                itemCount: teste.length,
                                 itemBuilder: (BuildContext context, int i){
                                   
-                                  doc = snapshot.data.documents[i];
+                                  doc = teste[i];
                                   ask.fromJson(doc.data);
                                   print(ask.toJson());
                                   print(doc.data['userName']);
@@ -115,22 +120,28 @@ class _FeedPageState extends State<FeedPage> {
                     child: Stack(
                       children: <Widget>[
                         
-                        Container(
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                            child: Center(
-                              child: AutoSizeText(
-                                "${ask.ask}",
-                                style: TextStyle(fontSize: 30.0),
-                                minFontSize: 15.0,
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            )),
+                        InkWell(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => FeedViewPage(ask: ask,)));
+                          },
+                          child: Container(
+                              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                              child: Center(
+                                child: AutoSizeText(
+                                  "${ask.ask}",
+                                  style: TextStyle(fontSize: 30.0),
+                                  minFontSize: 15.0,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              )),
+                        ),
                         Positioned(
                           bottom: 10,
                           left: 10,
                           child: CircleAvatar(
-                            backgroundColor: Colors.blue,
+                            backgroundImage: AssetImage("assets/profile.png"),
+                            backgroundColor: Colors.white,
                             maxRadius: 10,
                           ),
                         ),

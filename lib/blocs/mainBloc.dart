@@ -11,9 +11,10 @@ class BlocMain implements BlocBase {
   Stream<QuerySnapshot> get asks =>
       Firestore.instance.collection("dart").snapshots();
 
-  Future<Null> addAsk(AskModel ask) async {
+  Future<bool> addAsk(AskModel ask) async {
     print("add ask");
     print(ask.toJson());
     await Firestore.instance.collection("dart").add(ask.toJson());
+    return true;
   }
 }
