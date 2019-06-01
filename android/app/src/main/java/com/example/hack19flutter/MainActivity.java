@@ -1,4 +1,4 @@
-package com.example.hack19flutter;
+package hack.flutter;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
