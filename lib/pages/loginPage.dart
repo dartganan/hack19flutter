@@ -54,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             child: RaisedButton(
               onPressed: () async {
                 if (_formKey.currentState.validate()) {
+                  signUp(_emailController.text, _passwordController.text);
                   _signInWithEmailAndPassword();
                 }
               },
@@ -98,6 +99,11 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       _success = false;
     }
+  }
+
+    signUp(String email, String password) async {
+    FirebaseUser user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    return user.uid;
   }
     
 }
