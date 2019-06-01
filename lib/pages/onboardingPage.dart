@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fancy_on_boarding/fancy_on_boarding.dart';
 import 'package:fancy_on_boarding/page_model.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart'; 
 
 class OnboardingPage extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
+  static double rating = 0;
   static final skills = [
     'User interface',
     'Data & backend',
@@ -19,7 +21,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   final pageList = [
     PageModel(
         color: const Color(0xFF678FB4),
-        heroAssetPath: 'assets/hotels.png',
+        heroAssetPath: 'assets/hello.png',
         title: Text('Welcome',
             style: TextStyle(
               fontWeight: FontWeight.w800,
@@ -33,7 +35,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               color: Colors.white,
               fontSize: 18.0,
             )),
-        iconAssetPath: 'assets/key.png'),
+        iconAssetPath: 'assets/hello.png'),
     PageModel(
         color: const Color(0xFF65B0B4),
         heroAssetPath: 'assets/profile.png',
@@ -84,7 +86,26 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   static List<Widget> _buildList(List<String> skills) {
     return skills.map((skill) {
-      return Text(skill);
+      return new Row(
+        children: <Widget>[
+          Text(skill),
+          SmoothStarRating(
+            allowHalfRating: false,
+            onRatingChanged: (v) {
+              rating = v;
+              // setState(() {
+
+              // });
+            },
+            starCount: 3,
+            rating: rating,
+            size: 40.0,
+            color: Colors.green,
+            borderColor: Colors.green,
+            spacing:0.0
+          )
+        ],
+      );
     }).toList();
   }
 
